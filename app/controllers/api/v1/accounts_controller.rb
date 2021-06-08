@@ -1,6 +1,6 @@
 class Api:V1:AccountsController < ApplicationController
     before_action :set_account, only: [:show, :update, :destroy]
-    
+
     def index
         @account = Account.all
     
@@ -14,7 +14,7 @@ class Api:V1:AccountsController < ApplicationController
     
       # POST /account
       def create
-        @account = account.new(account_params)
+        @account = Account.new(account_params)
     
         if @account.save
           render json: @account, status: :created, transaction: @account
