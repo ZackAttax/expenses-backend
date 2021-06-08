@@ -1,5 +1,5 @@
 class Api:V1:TransactionsController < ApplicationController
-    before_action :set_transaction, only: [:show, :update, :destroy]
+    before_action :set_account, only: [:show, :update, :destroy]
     
     def index
 
@@ -40,9 +40,12 @@ class Api:V1:TransactionsController < ApplicationController
     
       private
         # Use callbacks to share common setup or constraints between actions.
-        def set_transaction
-          @transaction = Transaction.find(params[:id])
+        def set_account
+          @account = Account.find(params[:account_id])
         end
+        def set_transaction
+            @transaction = Transaction.find(params[:transaction_id])
+          end
 
     def transaction_params
         params.require(:transaction).permit(:blance, :name)
