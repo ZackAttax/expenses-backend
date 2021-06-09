@@ -1,15 +1,15 @@
-class Api:V1:AccountsController < ApplicationController
+class Api::V1::AccountsController < ApplicationController
     before_action :set_account, only: [:show, :update, :destroy]
 
     def index
         @account = Account.all
     
-        render json: @account
+        render json: @account, include: :transactions
       end
     
       # GET /account/1
       def show
-        render json: @account
+        render json: @account, include: :transactions
       end
     
       # POST /account
@@ -40,7 +40,7 @@ class Api:V1:AccountsController < ApplicationController
       private
         # Use callbacks to share common setup or constraints between actions.
         def set_account
-          @account = account.find(params[:id])
+          @account = Account.find(params[:id])
         end
 
     def account_params

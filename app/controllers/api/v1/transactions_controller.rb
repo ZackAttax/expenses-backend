@@ -1,4 +1,4 @@
-class Api:V1:TransactionsController < ApplicationController
+class Api::V1::TransactionsController < ApplicationController
     before_action :set_transaction, only: [:show, :update, :destroy]
     before_action :set_account, only: :index
     
@@ -51,4 +51,4 @@ class Api:V1:TransactionsController < ApplicationController
         params.require(:transaction).permit(:blance, :name)
     end
 end
-end
+

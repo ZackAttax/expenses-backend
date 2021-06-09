@@ -4,13 +4,13 @@ class Account < ApplicationRecord
     validates :balance, presence: true
 
     def update_balance(transactions)
-        if transaction.kind
-            balance = balance + transactions.amount
+        if transaction.kind == true
+            self.balance = self.balance + transactions.amount
             save
-        elsif
-            if balance > transactions.amount
-            balance = balance - transactions.amount
-            save
+        elsif transactions.kind == false
+            if self.balance >= transactions.amount
+            self.balance = self.balance - transactions.amount
+            self.save
             else
                return "transaction failed"
             end
