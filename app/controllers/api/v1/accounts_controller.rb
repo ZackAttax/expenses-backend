@@ -44,6 +44,6 @@ class Api::V1::AccountsController < ApplicationController
         end
 
     def account_params
-        params.require(:account).permit(:blance, :name)
+        params.require(:account).permit(:balance, :name)
     end
 end

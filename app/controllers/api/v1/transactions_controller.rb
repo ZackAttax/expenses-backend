@@ -1,6 +1,6 @@
 class Api::V1::TransactionsController < ApplicationController
     before_action :set_transaction, only: [:show, :update, :destroy]
-    before_action :set_account, only: :index
+    before_action :set_account, only: [:index, :create] 
     
     def index
         @transactions = @account.transactions
@@ -16,9 +16,9 @@ class Api::V1::TransactionsController < ApplicationController
       # POST /transaction
       def create
         @transaction = @account.transactions.new(transaction_params)
-        if @account.update_balance(@transactions) != "transaction failed"
-             @transaction.save
-          render json: @transaction, status: :created, transaction: @transaction
+        if @account.update_balance(@transaction) != "transaction failed"
+          @transaction.save
+          render json: @account, include: :transactions
         else
           render json: @transaction.errors, status: :unprocessable_entity
         end
@@ -48,7 +48,7 @@ class Api::V1::TransactionsController < ApplicationController
           end
 
     def transaction_params
-        params.require(:transaction).permit(:blance, :name)
+        params.require(:transaction).permit(:amount, :kind)
     end
 end
 
