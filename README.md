@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the backend for an expense tracker
 
-Things you may want to cover:
+You can create Accounts with a starting balance
 
-* Ruby version
+Create transactions belonging to an account to change the balance. If it's a withdrawel and there are insufficient funds it won't go through.
 
-* System dependencies
+Deleting a tranaction will reverse the transaction. If it is a deposit the funds must be available for it to be reverese
 
-* Configuration
+Data is serialized using Rails built in seriliazer
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Rails version             6.1.3.2
+Ruby version              ruby 2.6.1p33 (2019-01-30 revision 66950) [x86_64-darwin20]
+RubyGems version          3.2.7
+Rack version              2.2.3

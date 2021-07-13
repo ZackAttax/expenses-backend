@@ -1,6 +1,6 @@
 class Api::V1::TransactionsController < ApplicationController
     before_action :set_transaction, only: [:show, :update, :destroy]
-    before_action :set_account, only: [:index, :create] 
+    before_action :set_account, only: [:index, :create, :destroy] 
     
     def index
         @transactions = @account.transactions
@@ -35,7 +35,13 @@ class Api::V1::TransactionsController < ApplicationController
     
       # DELETE /transaction/1
       def destroy
-        @transaction.destroy
+        #byebug
+        if @account.update_balance_on_delete(@transaction) != "transaction failed"
+            @transaction.destroy
+            render json: @account, include: :transactions
+         else
+            render json: {error: "Balance too low"}
+         end
       end
     
       private
